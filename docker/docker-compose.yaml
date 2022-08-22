@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  crawler:
+    image: python-crawler:latest
+    container_name: g1_crawler
+    ports:
+    - 80:80
+    networks:
+      - api-python
+
+networks:
+  api-python:
+    external: true

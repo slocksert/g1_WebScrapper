@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:latest
+    container_name: g1_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: dbroot
+    ports:
+      - 3306:3306
+    cap_add:
+      - SYS_NICE
+    networks:
+      - api-python
+  
+networks:
+  api-python:
+    external: true
