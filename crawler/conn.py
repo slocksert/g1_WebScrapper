@@ -14,22 +14,22 @@ class Con():
         self.port = os.getenv('MYSQL_PORT')
 
     def connect(self):
-        engine = ce(f'mysql+pymysql://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}')
-        self.con = engine.connect()
+        self.engine = ce(f'mysql+pymysql://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}')
+        self.con = self.engine.connect()
         
+    def create(self):
+        self.con.execute('CREATE DATABASE IF NOT EXISTS dbroot')
+
     def send_file(self):
         #current date
         current_date = str(datetime.now().date())
         n_date = datetime.strptime(current_date, "%Y-%m-%d").strftime("%d-%m-%Y")
         df = pd.read_csv(f'./csvs/G1_{n_date}.csv')
-        for key, value in df.iterrows():
-            news = value[0]
-            link = value[1]
-            dates = value[2]
-            self.con.execute(f'INSERT INTO dbroot.crawler (news, link, date) VALUES("{news}", "{link}", "{dates}")')
+        df.to_sql(name='crawler', con=self.engine, if_exists='append', index=False)
 
 p = Con()
 p.connect()
+p.create()
 p.send_file()
 
 
