@@ -1,28 +1,28 @@
 # G1 CRAWLER
 
-## O que faz?
-- Um buscador de manchetes do site G1, basicamente pega como dados a manchete, o link para a manchete e a data.
+## What it does?
+- A headline finder from the G1 site, basically takes as data the headline, the link to the headline, and the date.
 
-## Como foi feito?
-- Utilizando a biblioteca 'scrapy', a qual se especializa em crawlers utilizei seletores CSS para conseguir filtrar o que queria exatamente do site, apos isso, salvo esses dados em um arquivo csv e os mando para um banco de dados.
+## How it was made?
+- Using the library 'scrapy', which specializes in crawlers, I used CSS selectors to filter out exactly what I wanted from the site, then saved the data in a csv file and sent it to a database.
 
-## Como Usar ?
-- Clone este repositorio em sua maquina:
+## How to use?
+- Clone this repository:
 ```bash
 $ git clone https://github.com/slocksert/g1_crawler
 ```
-- Baixe a imagem docker que esta no DockerHub com este comando:
+- Get the docker image:
 ```bash
 $ docker pull slocksert/g1crawler
 ```
-- Execute este comando para iniciar o banco de dados:
+- To start the MySQL database type this:
 ```bash
 $ docker compose -f "docker/docker-compose2.yaml" up -d --build
 ```
 
-- Baixe o Dbeaver para poder visualizar o banco de dados.
+- Download DBeaver to visualiaze the database.
 
-    - Arch Linux, Manjaro e derivados:
+    - Arch Linux, Manjaro and etc:
     ```bash
     $ sudo pacman -S dbeaver
     ``` 
@@ -34,22 +34,22 @@ $ docker compose -f "docker/docker-compose2.yaml" up -d --build
     $ sudo snap install dbeaver-ce
     ```
 
-- Inicie uma nova conexao:
+- Start a new conection:
 <h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/dbeaver.jpeg?raw=true"></h1>
 
-- Escolha MYSQL
+- Choose MYSQL.
 <h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/image_2022-11-10_215713354.png?raw=true"></h1>
 
-- No campo "password" coloque root e avance
+- In the "password" field type root and click finish.
 <h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/image_2022-11-10_215917309.png?raw=true"></h1>
 
-- Execute este comando para iniciar o Crawler:
+- To start the Crawler type this:
 ```bash
 $ docker compose -f "docker/docker-compose.yaml" up -d --build
 ```
 
-- Aperte F5 no DBeaver e ira aparecer a tabela crawler
+- Press F5 in DBeaver to reload it crawler table will appear
 <h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/image_2022-11-10_220316704.png?raw=true"></h1>
 
-- Ao acessar a tabela crawler:
+- Click in the crawler table:
 <h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/image_2022-11-10_220452957.png?raw=true"></h1>
