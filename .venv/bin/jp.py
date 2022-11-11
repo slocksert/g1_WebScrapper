@@ -1,4 +1,4 @@
-#!/home/slocksert/Projects/portfolio/Crawler/g1scrap/.venv/bin/python3
+#!/home/slocksert/files/g1_crawler/.venv/bin/python3
 
 import sys
 import json

@@ -60,7 +60,8 @@ def add_verify_tests(cls, iface_classes_iter):
 
                 self.assertTrue(self.verify(iface, stdlib_class))
 
-            suffix = "%s_%s_%s" % (
+            suffix = "%s_%s_%s_%s" % (
+                stdlib_class.__module__.replace('.', '_'),
                 stdlib_class.__name__,
                 iface.__module__.replace('.', '_'),
                 iface.__name__
@@ -81,16 +82,17 @@ def add_verify_tests(cls, iface_classes_iter):
                 sro = implements.__sro__
                 self.assertIs(sro[-1], Interface)
 
-                # Check that we got the strict C3 resolution order, unless we
-                # know we cannot. Note that 'Interface' is virtual base that doesn't
-                # necessarily appear at the same place in the calculated SRO as in the
-                # final SRO.
-                strict = stdlib_class not in self.NON_STRICT_RO
-                isro = ro.ro(implements, strict=strict)
-                isro.remove(Interface)
-                isro.append(Interface)
+                if stdlib_class not in self.UNVERIFIABLE_RO:
+                    # Check that we got the strict C3 resolution order, unless
+                    # we know we cannot. Note that 'Interface' is virtual base
+                    # that doesn't necessarily appear at the same place in the
+                    # calculated SRO as in the final SRO.
+                    strict = stdlib_class not in self.NON_STRICT_RO
+                    isro = ro.ro(implements, strict=strict)
+                    isro.remove(Interface)
+                    isro.append(Interface)
 
-                self.assertEqual(tuple(isro), sro)
+                    self.assertEqual(tuple(isro), sro)
 
             name = 'test_auto_ro_' + suffix
             test_ro.__name__ = name
@@ -101,6 +103,7 @@ class VerifyClassMixin(unittest.TestCase):
     verifier = staticmethod(verifyClass)
     UNVERIFIABLE = ()
     NON_STRICT_RO = ()
+    UNVERIFIABLE_RO = ()
 
     def _adjust_object_before_verify(self, iface, x):
         return x
