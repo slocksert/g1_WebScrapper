@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   crawler:
-    image: python_crawler:latest
+    image: slocksert/g1crawler
     container_name: g1_crawler
     ports:
     - 80:80
