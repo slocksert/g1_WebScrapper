@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+h1 {
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+}
+
+#date-id {
+    font-weight: bolder;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#news-id {
+    font-family: sans-serif;
+}

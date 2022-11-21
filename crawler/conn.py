@@ -25,7 +25,8 @@ class Con():
         current_date = str(datetime.now().date())
         n_date = datetime.strptime(current_date, "%Y-%m-%d").strftime("%d-%m-%Y")
         df = pd.read_csv(f'./csvs/G1_{n_date}.csv')
-        df.to_sql(name='crawler', con=self.engine, if_exists='append', index=False)
+        df.to_sql(name='crawler', con=self.engine, if_exists='append', index=True)
+        print(f'The file G1_{n_date}.csv has been sent to the DataBase!')
 
 p = Con()
 p.connect()
