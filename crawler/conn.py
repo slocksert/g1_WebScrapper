@@ -22,10 +22,10 @@ class Con():
 
     def send_file(self):
         #current date
-        current_date = str(datetime.now().date())
+        current_date = str(datetime.utcnow().date())
         n_date = datetime.strptime(current_date, "%Y-%m-%d").strftime("%d-%m-%Y")
         df = pd.read_csv(f'./csvs/G1_{n_date}.csv')
-        df.to_sql(name='crawler', con=self.engine, if_exists='append', index=True)
+        df.to_sql(name='crawler', con=self.engine, if_exists='append', index=False)
         print(f'The file G1_{n_date}.csv has been sent to the DataBase!')
 
 p = Con()
