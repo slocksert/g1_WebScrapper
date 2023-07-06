@@ -9,47 +9,38 @@
 ## How to use?
 - Clone this repository:
 ```bash
-$ git clone https://github.com/slocksert/g1_crawler
+$ git clone https://github.com/slocksert/g1_crawler.git
 ```
-- Get the docker image:
+- Install Docker and Docker Compose on your machine if you haven't already done so (https://docs.docker.com/).
+- Navigate into project directory, build images for both services by running command in terminal:
 ```bash
-$ docker pull slocksert/g1crawler
+$ cd g1_crawler/
 ```
-- To start the MySQL database type this:
+- Get the application docker image:
 ```bash
-$ docker compose -f "docker/docker-compose2.yaml" up -d --build
+$ docker pull slocksert/g1crawler:v3
 ```
+- To start the MySQL database using a docker-compose file:
+    - Create a *.env* file with these variables:
+        - MYSQL_HOST
+        - MYSQL_ROOT_PASSWORD
+        - MYSQL_DATABASE
+        - MYSQL_PORT
 
-- Download DBeaver to visualiaze the database.
-
-    - Arch Linux, Manjaro and etc:
-    ```bash
-    $ sudo pacman -S dbeaver
-    ``` 
-    ```bash
-    $ yay -S dbeaver-ce
-    ```
-    - Snap:
-    ```bash
-    $ sudo snap install dbeaver-ce
-    ```
-
-- Start a new conection:
-<h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/dbeaver.jpeg?raw=true"></h1>
-
-- Choose MYSQL.
-<h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/image_2022-11-10_215713354.png?raw=true"></h1>
-
-- In the "password" field type root and click finish.
-<h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/image_2022-11-10_215917309.png?raw=true"></h1>
-
-- To start the Crawler type this:
+- To create a network between containers:
 ```bash
-$ docker compose -f "docker/docker-compose.yaml" up -d --build
+$ docker network create api-python
 ```
 
-- Press F5 in DBeaver to reload it crawler table will appear
-<h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/image_2022-11-10_220316704.png?raw=true"></h1>
+- Start the MySQL compose:
+```bash
+$ docker compose up
+```
+- Start the crawler docker:
+```bash
+$ docker compose -f "docker-compose2.yaml" up
+```
 
-- Click in the crawler table:
+### To visualize the database install a database admnistration tool, example right below.
+<br>
 <h1 align="center"><img src="https://github.com/slocksert/arranger_imgs/blob/main/image_2022-11-10_220452957.png?raw=true"></h1>
