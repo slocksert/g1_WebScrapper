@@ -12,20 +12,17 @@ class G1Spider(scrapy.Spider):
             yield scrapy.Request(url = url, callback = self.parse)
 
     def parse(self, response):
-        titles = response.css('*.gui-color-primary::text').extract()
-        links = response.css('*.gui-color-primary::attr(href)').extract()
-        current_date = str(datetime.now().date())
-        n_date = datetime.strptime(current_date, "%Y-%m-%d").strftime("%d-%m-%Y")
-        n_date_bar = n_date.replace('-', '/')
-        with open(f'./csvs/G1_{n_date}.csv', 'w') as file:
+        titles = response.css('*.gui-color-primary.gui-color-hover > div > a > h2::text').extract()
+        links = response.css('*.gui-color-primary.gui-color-hover > div > a::attr(href)').extract()
+        current_date = str(datetime.utcnow().date())
+        new_date = current_date.replace('-', '/')
+        with open(f'./csvs/G1_{current_date}.csv', 'w') as file:
             header = ['news', 'link', 'date']
             csv_writer = csv.DictWriter(file, fieldnames=header)
             csv_writer.writeheader()
             for title, link in zip(titles,links):
-                if title.find('%'):
-                    title = title.replace('%', ' porcento')
-                csv_writer.writerow({'news':f'{title}', 'link':f'{link}', 'date':f'{n_date_bar}'})
+                csv_writer.writerow({'news':f'{title}', 'link':f'{link}', 'date':f'{new_date}'})
 
-process = CrawlerProcess()
-process.crawl(G1Spider)
-process.start()
+crawler = CrawlerProcess()
+crawler.crawl(G1Spider)
+crawler.start()
