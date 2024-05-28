@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "g1-crawler"
+description = "Tool to WebScrap g1 website"
+authors = ["slocksert <rsdlj01@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.111.0"
+python-multipart = "^0.0.9"
+selenium = "^4.21.0"
+sqlalchemy = "^2.0.30"
+uvicorn = "^0.29.0"
+pandas = "^2.2.2"
+pymysql = "^1.1.1"
+python-decouple = "^3.8"
+requests = "^2.32.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
