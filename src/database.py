@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from config import password, port, database
+from src.config import password, port, database, host
 
-sqlalchemy_database_url = f'mysql+pymysql://root:{password}@127.0.0.1:{port}/{database}'
-engine = create_engine(sqlalchemy_database_url)
+DBURL = f'mysql+pymysql://root:{password}@{host}:{port}/{database}'
+engine = create_engine(DBURL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 def get_db():

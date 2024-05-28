@@ -1,12 +1,12 @@
 from fastapi import Depends, APIRouter
 from sqlalchemy.orm import Session
 
-from models import Crawler
-from database import get_db
+from src.models import G1Scrapper
+from src.database import get_db
 
-crawler = APIRouter()
+g1scrapper = APIRouter()
 
-@crawler.get('/news')
+@g1scrapper.get('/news')
 def list(db: Session = Depends(get_db)):
-    news = db.query(Crawler).all()
+    news = db.query(G1Scrapper).all()
     return news

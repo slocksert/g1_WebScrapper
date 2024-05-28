@@ -1,7 +1,6 @@
-import os
-import dotenv
+from decouple import config
 
-dotenv.load_dotenv()
-database = os.getenv('MYSQL_DATABASE')
-password = os.getenv('MYSQL_ROOT_PASSWORD')
-port = os.getenv('MYSQL_PORT')
+host = config('MYSQL_HOST')
+database = config('MYSQL_DATABASE')
+password = config('MYSQL_ROOT_PASSWORD')
+port = config('MYSQL_PORT') 

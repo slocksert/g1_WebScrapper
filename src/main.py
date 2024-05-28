@@ -1,8 +1,12 @@
 from fastapi import FastAPI
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
+import sys, os
 
-from routes import crawler
+sys.path.append(os.getcwd())
+
+from src.routes import g1scrapper
+from src.config import port, host
 
 app = FastAPI()
 origins = ['*']
@@ -15,13 +19,13 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-app.include_router(crawler)
+app.include_router(g1scrapper)
 
 if __name__ == "__main__":
     uvicorn.run(
         "main:app",
-        host="localhost",
-        port=8000,
+        host=host,
+        port=port,
         reload=1,
         server_header=0
     )
