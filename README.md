@@ -1,10 +1,10 @@
 # G1 WEBSCRAPPER
 
 ## What it does?
-- A headline finder from the G1 site, basically takes as data the headline, the link to the headline, and the date.
+- A headline finder from the G1 site, basically takes as data the headline, link, date and respective image.
 
 ## How it was made?
-- Using the library 'scrapy', which specializes in crawlers, I used CSS selectors to filter out exactly what I wanted from the site, then saved the data in a csv file and sent it to a database.
+- The software utilizes SQLAlchemy for database interaction and FastAPI for web framework. It scrapes news data from G1 website, stores it in a CSV file, and then checks if each news already exists in the database before sending the new data to the database.
 
 ## How to use?
 - Clone this repository:
