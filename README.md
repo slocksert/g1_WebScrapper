@@ -11,15 +11,9 @@
 ```bash
 $ git clone https://github.com/slocksert/g1_crawler.git
 ```
-- Install Docker and Docker Compose on your machine if you haven't already done so (https://docs.docker.com/).
-- Navigate into project directory, build images for both services by running command in terminal:
-```bash
-$ cd g1_crawler/
-```
-- Get the application docker image:
-```bash
-$ docker pull slocksert/g1crawler:v3
-```
+
+- Activate Poetry env and install dependencies
+
 - To start the MySQL database using a docker-compose file:
     - Create a *.env* file with these variables:
         - MYSQL_HOST
@@ -27,18 +21,14 @@ $ docker pull slocksert/g1crawler:v3
         - MYSQL_DATABASE
         - MYSQL_PORT
 
-- To create a network between containers:
-```bash
-$ docker network create api-python
-```
-
 - Start the MySQL compose:
 ```bash
 $ docker compose up
 ```
-- Start the crawler docker:
+
+- Start the WebScrapper:
 ```bash
-$ docker compose -f "docker-compose2.yaml" up
+$ python3 app/main.py
 ```
 
 ### To visualize the database install a database admnistration tool, example right below.
