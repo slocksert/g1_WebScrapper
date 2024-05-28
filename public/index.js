@@ -1,47 +1,55 @@
-async function carregarDados(){
-    const response = await axios.get('http://localhost:8000/news')
-    
-    const noticias = response.data
-    
-    const date = document.getElementById('news')
-    const news = document.getElementById('news')
-    const link = document.getElementById('news')
+async function carregarDados() {
+    const response = await axios.get('http://localhost:8000/news');
+    const noticias = response.data;
+    const container = document.getElementById('grid-container');
 
-   
-    news.innerHTML = ''
-    link.innerHTML = ''
-    date.innerHTML = ''
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const year = String(date.getFullYear()).slice(-2);
+        return `${day}/${month}/${year}`;
+    };
 
     noticias.forEach(noticia => {
+        const ul = document.createElement('ul');
+        ul.className = 'flex-item';
 
-        const date_item = document.createElement('li')
-        const news_item = document.createElement('li')
-        const link_item = document.createElement('li')
-        
-        const linha_date = `${noticia.date}`
-        const linha_news = `${noticia.news}`
-        const linha_link = `${noticia.link}`
-        
-        news_item.innerText = linha_news
-        date_item.innerText = linha_date
-        
-        const a_item = document.createElement('a')
-        a_item.href = linha_link
-        a_item.innerText = linha_link
+        const nameLi = document.createElement('li');
+        nameLi.textContent = `Notícia: ${noticia.news}`;
 
-        news.appendChild(date_item)
-        news.appendChild(news_item)
-        news.appendChild(link_item)
-        link_item.appendChild(a_item)
+        const linkLi = document.createElement('li');
+        const link = document.createElement('a');
+        link.textContent = "Link: " + noticia.link;
+        link.href = noticia.link;
+        link.target = "_blank";
+        linkLi.appendChild(link);
 
-        date_item.setAttribute('id', 'date-id')
-        news_item.setAttribute('id', 'news-id')
-    })
+        const dateLi = document.createElement('li');
+        dateLi.textContent = `Data: ${formatDate(noticia.date)}`;
+
+        const imageLi = document.createElement('li');
+        const image = document.createElement('img');
+        image.className = 'image-item';
+
+        if (noticia.image && noticia.image.trim() !== "") {
+            image.src = noticia.image;
+        } else {
+            image.src = 'noimage.jpg';
+        }
+
+        image.alt = noticia.news;
+        image.width = 500;
+        image.height = 350;
+        imageLi.appendChild(image);
+
+        ul.appendChild(nameLi);
+        ul.appendChild(linkLi);
+        ul.appendChild(dateLi);
+        ul.appendChild(imageLi);
+
+        container.appendChild(ul);
+    });
 }
 
-function App(){
-    console.log('App iniciado')
-    carregarDados()
-}
-
-App()
+window.onload = carregarDados;
