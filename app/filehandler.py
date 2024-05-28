@@ -2,17 +2,17 @@ import sqlalchemy
 import pandas as pd 
 import os
 import logging
-from webscrapper import WebScrapper
+from webscraper import WebScraper
 
 class FileHandler():
-    def __init__(self, webscrapper:WebScrapper) -> None:
-        self.host = webscrapper.host
-        self.database = webscrapper.database
-        self.password = webscrapper.password
-        self.port = webscrapper.port  
-        self.date = webscrapper.date
-        self.csv_file_path = webscrapper.csv_file_path
-        self.engine = webscrapper.engine
+    def __init__(self, webscraper:WebScraper) -> None:
+        self.host = webscraper.host
+        self.database = webscraper.database
+        self.password = webscraper.password
+        self.port = webscraper.port  
+        self.date = webscraper.date
+        self.csv_file_path = webscraper.csv_file_path
+        self.engine = webscraper.engine
 
     def connect(self) -> None:
         try:

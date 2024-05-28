@@ -6,7 +6,7 @@ from src.config import database
 
 Base = declarative_base()
 
-class G1Scrapper(Base):
+class G1Scraper(Base):
     __tablename__ = f'{database}'
     index = Column(Integer(), primary_key=True, autoincrement=True)
     news = Column(String(355), unique=True)

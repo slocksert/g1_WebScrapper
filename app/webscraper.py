@@ -15,11 +15,11 @@ from decouple import config
 
 sys.path.append(os.getcwd())
 
-from src.models import G1Scrapper
+from src.models import G1Scraper
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-class WebScrapper:
+class WebScraper:
     def __init__(self) -> None:
         self.host = config('MYSQL_HOST')
         self.database = config('MYSQL_DATABASE')
@@ -97,7 +97,7 @@ class WebScrapper:
     def check_if_exists(self, news) -> bool:
         try:
             session = self.Session()
-            result = session.query(G1Scrapper).filter(G1Scrapper.news == news).first()
+            result = session.query(G1Scraper).filter(G1Scraper.news == news).first()
             if result:
                 logging.info(f"ALREADY ON DB {news}")
             session.close()

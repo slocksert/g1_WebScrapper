@@ -1,4 +1,4 @@
-# G1 WEBSCRAPPER
+# G1 WEBSCRAPER
 
 ## What it does?
 - A headline finder from the G1 site, basically takes as data the headline, link, date and respective image.
@@ -26,7 +26,7 @@ $ git clone https://github.com/slocksert/g1_WebScrapper.git
 $ docker compose up
 ```
 
-- Start the WebScrapper:
+- Start the WebScraper:
 ```bash
 $ python3 app/main.py
 ```

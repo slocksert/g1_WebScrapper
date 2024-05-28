@@ -1,16 +1,16 @@
 from filehandler import FileHandler
-from webscrapper import WebScrapper
+from webscraper import WebScraper
 
-webscrapper = WebScrapper()
-file_handler = FileHandler(webscrapper)
+webscraper = WebScraper()
+file_handler = FileHandler(webscraper)
 
 if __name__ == "__main__":
     try:
-        webscrapper.scroll()
-        webscrapper.write_csv()
+        webscraper.scroll()
+        webscraper.write_csv()
 
         file_handler.connect()
         file_handler.send_file()
-        webscrapper.delete_csv()
+        webscraper.delete_csv()
     except KeyboardInterrupt:
         print("Closing Application...")
