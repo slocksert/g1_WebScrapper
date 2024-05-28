@@ -1,19 +1,9 @@
-version: '3.8'
-
 services:
   mysql-db:
-    image: mysql:latest
+    image: mysql:8.0
     container_name: mysql-db
     restart: always
     env_file:
       - .env
     ports:
-      - ${MYSQL_PORT}:${MYSQL_PORT}
-    cap_add:
-      - SYS_NICE
-    networks:
-      - api-python
-  
-networks:
-  api-python:
-    external: true
+      - 3306:3306
