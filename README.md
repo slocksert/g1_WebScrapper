@@ -1,4 +1,4 @@
-# G1 CRAWLER
+# G1 WEBSCRAPPER
 
 ## What it does?
 - A headline finder from the G1 site, basically takes as data the headline, the link to the headline, and the date.
@@ -9,7 +9,7 @@
 ## How to use?
 - Clone this repository:
 ```bash
-$ git clone https://github.com/slocksert/g1_crawler.git
+$ git clone https://github.com/slocksert/g1_WebScrapper.git
 ```
 
 - Activate Poetry env and install dependencies
