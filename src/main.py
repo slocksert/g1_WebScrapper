@@ -6,7 +6,7 @@ import sys, os
 sys.path.append(os.getcwd())
 
 from src.routes import g1scrapper
-from src.config import port, host
+from src.config import fastapi_port, host
 
 app = FastAPI()
 origins = ['*']
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",
         host=host,
-        port=port,
+        port=fastapi_port,
         reload=1,
         server_header=0
     )
